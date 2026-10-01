@@ -40,7 +40,8 @@ export async function getRecipe(req, res) {
         "Add chicken and pasta to skillet",
         "Stir until combined",
         "Top with parsley",
-        "Serve and enjoy!"
+        "Serve and enjoy!",
+        "test de Hicham Moulragouba"
       ],
       image: "https://www.budgetbytes.com/wp-content/uploads/2022/07/Chicken-Alfredo-bowl.jpg",
     }, res);
