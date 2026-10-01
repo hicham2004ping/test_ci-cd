@@ -41,7 +41,8 @@ export async function getRecipe(req, res) {
         "Stir until combined",
         "Top with parsley",
         "Serve and enjoy!",
-        "test de Hicham Moulragouba"
+        "test de Hicham Moulragouba",
+        "take your time dont live too fast",
       ],
       image: "https://www.budgetbytes.com/wp-content/uploads/2022/07/Chicken-Alfredo-bowl.jpg",
     }, res);
