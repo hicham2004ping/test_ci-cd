@@ -22,14 +22,14 @@ jobs:
       - name: build the docker image
         run: docker build -t my-app:latest .
 
-      -name : we are going to print the images 
+      - name : we are going to print the images 
         run: docker images
 
-      -name : we are going to tag this image with the docker hub username and the image name
+      - name : we are going to tag this image with the docker hub username and the image name
         run: docker tag my-app:latest nascerallah/my-nascerallah:latest
 
-      -name : we are going to connect to the docker hub
+      - name : we are going to connect to the docker hub
         run: docker login -u nascerallah -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      -name : we are going to push the image to the docker hub
+      - name : we are going to push the image to the docker hub
         run : docker push nascerallah/my-nascerallah:latest
