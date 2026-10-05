@@ -44,6 +44,7 @@ export async function getRecipe(req, res) {
         "test de Hicham Moulragouba",
         "take your time dont live too fast",
         "be a simple meen",
+        "life goes on men"
       ],
       image: "https://www.budgetbytes.com/wp-content/uploads/2022/07/Chicken-Alfredo-bowl.jpg",
     }, res);
