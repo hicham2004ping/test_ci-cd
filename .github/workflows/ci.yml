@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Get the code
@@ -26,10 +26,32 @@ jobs:
         run: docker images
 
       - name : we are going to tag this image with the docker hub username and the image name
-        run: docker tag my-app:latest nascerallah/my-nascerallah:latest
+        run: docker tag my-app:latest ${{ vars.DOCKER_HUB_USERNAME }}/${{vars.DOCKER_HUB_REPOSITORY}}:latest
 
       - name : we are going to connect to the docker hub
         run: docker login -u ${{ vars.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
 
       - name : we are going to push the image to the docker hub
-        run : docker push nascerallah/my-nascerallah:latest
+        run : docker push ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_HUB_REPOSITORY }}:latest
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+
+      - name : we are going to pull the latest image from the docker hub
+        run: docker pull ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_HUB_REPOSITORY }}:latest
+
+      - name: test sur le serveur
+        run: echo "labayka ya nascerallah"
+
+      - name: we are going to stop the old container
+        run: docker stop my-app || true
+      
+      - name: we are going to remove the old container
+        run: docker rm my-app || true
+
+      - name : we are going to run the new container  
+        run: docker run -d --name my-app -p 80:3000 ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_HUB_REPOSITORY }}:latest
+
+      - name : the container has been succesfully created and is running
+        run: docker ps
