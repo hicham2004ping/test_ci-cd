@@ -41,9 +41,6 @@ jobs:
       - name : we are going to pull the latest image from the docker hub
         run: docker pull ${{ vars.DOCKER_HUB_USERNAME }}/${{ vars.DOCKER_HUB_REPOSITORY }}:latest
 
-      - name: test sur le serveur
-        run: echo "labayka ya nascerallah"
-
       - name: we are going to stop the old container
         run: docker stop my-app || true
       
